@@ -1,5 +1,6 @@
 package co.com.poli.shoppingservice.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,13 +16,18 @@ public class Invoice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "number_invoice")
     private String numberInvoice;
+    @Column(name = "description")
     private String description;
+    @Column(name = "customer_id")
     private Long customerId;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "invoice_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<InvoiceItem> items;
 
     @Override
