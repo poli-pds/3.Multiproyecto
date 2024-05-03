@@ -1,5 +1,7 @@
 package co.com.poli.productservice.controller;
 
+import co.com.poli.productservice.helper.Response;
+import co.com.poli.productservice.helper.ResponseBuild;
 import co.com.poli.productservice.persistence.entity.Category;
 import co.com.poli.productservice.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -12,14 +14,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService service;
+    private final ResponseBuild build;
     @PostMapping
-    public Category save(@RequestBody Category category){
+    public Response save(@RequestBody Category category){
         service.save(category);
-        return category;
+        return build.success(category);
     }
     @GetMapping
-    public List<Category> findAll(){
-        return service.findAll();
+    public Response findAll(){
+        return build.success(service.findAll());
     }
 }
 

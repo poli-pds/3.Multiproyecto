@@ -2,6 +2,8 @@ package co.com.poli.productservice.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,8 +18,10 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "El nombre no debe ser vacio")
     private String name;
     private Double stock;
+    @Positive(message = "El precio no debe ser negativo")
     private Double price;
 
     @ManyToOne(fetch = FetchType.LAZY)
