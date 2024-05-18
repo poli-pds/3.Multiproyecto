@@ -1,4 +1,4 @@
-package co.com.poli.productservice.helper;
+package co.com.poli.shoppingservice.helper;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;

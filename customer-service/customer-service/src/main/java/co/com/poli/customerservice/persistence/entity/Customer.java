@@ -1,6 +1,8 @@
 package co.com.poli.customerservice.persistence.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,8 +17,11 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "El nit no puede ser vacio")
     private String nit;
+    @NotEmpty(message = "El nombre no puede ser vacio")
     private String name;
+    @Email(message = "No es un formato valido de email")
     private String email;
 
     @Override

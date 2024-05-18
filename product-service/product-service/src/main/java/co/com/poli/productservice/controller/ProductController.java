@@ -1,6 +1,5 @@
 package co.com.poli.productservice.controller;
 
-
 import co.com.poli.productservice.helper.Response;
 import co.com.poli.productservice.helper.ResponseBuild;
 import co.com.poli.productservice.persistence.entity.Category;
@@ -24,7 +23,7 @@ public class ProductController {
     private final ProductService service;
     private final ResponseBuild build;
     @PostMapping
-    public Response save(@Valid @RequestBody Product product,BindingResult result){
+    public Response save(@Valid @RequestBody Product product, BindingResult result){
         if(result.hasErrors()){
             return build.failed(format(result));
         }
@@ -53,12 +52,11 @@ public class ProductController {
     }
 
     private List<Map<String,String>> format(BindingResult result){
-        List<Map<String,String>> errors = result.getFieldErrors()
+        return result.getFieldErrors()
                 .stream().map(error -> {
                     Map<String,String> err = new HashMap<>();
                     err.put(error.getField(),error.getDefaultMessage());
                     return err;
-                }).toList();
-        return errors;
+                }).collect(Collectors.toList());
     }
 }

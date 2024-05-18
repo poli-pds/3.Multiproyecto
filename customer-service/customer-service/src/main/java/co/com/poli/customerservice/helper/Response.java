@@ -1,4 +1,4 @@
-package co.com.poli.productservice.helper;
+package co.com.poli.customerservice.helper;
 
 import lombok.Builder;
 import lombok.Data;
